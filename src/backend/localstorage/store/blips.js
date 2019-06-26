@@ -47,7 +47,8 @@ const actions = {
   getMeta ({ commit }) {
   },
   setMeta ({ commit }, meta) {
-    commit('setMeta', meta)
+    const { title, categories, states } = meta
+    commit('setMeta', { title, categories, states })
   }
 }
 
