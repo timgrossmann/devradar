@@ -1,50 +1,68 @@
 <template>
-  <v-container id="radar-container">
-    <new-blip></new-blip>
-    <div class="radar" ref="radar">
-      <div id="blips">
-        <router-link
-          v-for="blip in blips"
-          v-bind:key="blip.index"
-          class="blip blip--hidden"
-          :to="{ name: 'List', params: {search: blip.title}}"
-          :data-category="blip.category"
-          :data-state="blip.state"
-          :data-changed="blip.changed"
-          :title="blip.title"
-          slot="activator"
-        >
-          <span
-            >{{blip.index}}</span>
-        </router-link>
-      </div>
-      <div :class="'q' + (ix+1)" v-for="(category, ix) in meta.categories" :key="ix"><h3>{{category}}</h3>
-        <ul>
-          <li
-            v-for="blip in blipsByCategory[category]"
+  <v-container id="wrapper">
+    <v-btn
+    @click.end="downloadPNG()">
+      SAVE PNG
+    </v-btn>
+    <v-container id="radar-container" ref="capture">
+      <new-blip></new-blip>
+      <div class="radar" ref="radar">
+        <div id="blips">
+          <router-link
+            v-for="blip in blips"
             v-bind:key="blip.index"
-          >
-            <router-link
+            class="blip blip--hidden"
             :to="{ name: 'List', params: {search: blip.title}}"
+            :data-category="blip.category"
+            :data-state="blip.state"
+            :data-changed="blip.changed"
+            :title="blip.title"
+            slot="activator"
+          >
+            <span
+              >{{blip.index}}</span>
+          </router-link>
+        </div>
+        <div :class="'q' + (ix+1)" v-for="(category, ix) in meta.categories" :key="ix"><h3>{{category}}</h3>
+          <ul>
+            <li
+              v-for="blip in blipsByCategory[category]"
+              v-bind:key="blip.index"
             >
-              <span class="blip-number">{{blip.index}}</span>
-              {{blip.title | limitString($config.blips.titleCutOff)}}
-              <span class="blip-state">{{blip.state}}</span>
-              </router-link>
-            </li>
-        </ul>
+              <router-link
+              :to="{ name: 'List', params: {search: blip.title}}"
+              >
+                <span class="blip-number">{{blip.index}}</span>
+                {{blip.title | limitString($config.blips.titleCutOff)}}
+                <span class="blip-state">{{blip.state}}</span>
+                </router-link>
+              </li>
+          </ul>
+        </div>
+        <div class="adopt"><span class="state">{{meta.states[3]}}</span></div>
+        <div class="trial"><span class="state">{{meta.states[2]}}</span></div>
+        <div class="assess"><span class="state">{{meta.states[1]}}</span></div>
+        <div class="hold"><span class="state">{{meta.states[0]}}</span></div>
       </div>
-      <div class="adopt"><span class="state">{{meta.states[3]}}</span></div>
-      <div class="trial"><span class="state">{{meta.states[2]}}</span></div>
-      <div class="assess"><span class="state">{{meta.states[1]}}</span></div>
-      <div class="hold"><span class="state">{{meta.states[0]}}</span></div>
-    </div>
+    </v-container>
   </v-container>
 </template>
 
 <script>
 import NewBlip from './NewBlip'
 import { getPseudoRand } from '../util'
+import html2canvas from 'html2canvas'
+
+function saveAs (uri, filename) {
+  const element = document.createElement('a')
+  element.setAttribute('href', uri)
+  element.setAttribute('download', filename)
+
+  element.style.display = 'none'
+  document.body.appendChild(element)
+  element.click()
+  document.body.removeChild(element)
+}
 
 export default {
   components: { NewBlip },
@@ -159,6 +177,15 @@ export default {
         this.previousRadarSize = radar.clientWidth
         this.arrangeBlips()
       }
+    },
+    downloadPNG () {
+      const filename = 'devradar.png'
+      html2canvas(this.$refs.capture)
+        .then(canvas => {
+          saveAs(canvas.toDataURL(), filename)
+        }).catch((error) => {
+          console.log(error)
+        })
     }
   },
   mounted: function () {
