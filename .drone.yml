@@ -16,7 +16,7 @@ steps:
   - cp -R .build/static/** .
   - npm ci
   - npm run build
-- name: publish
+- name: publish release
   image: plugins/github-release
   settings:
     api_key:
@@ -25,15 +25,19 @@ steps:
     checksum:
       - md5
     prerelease: true
-- name: build
+  when:
+    branch:
+    - master
+    event:
+    - tag
+- name: build editor.devradar.io
   image: node:lts-slim
   commands:
   - cd editor
-  - git reset --hard
   - cp -R .build/editor/** .
   - npm ci
   - npm run build
-- name: netlify deploy
+- name: deploy editor.devradar.io
   image: node:lts-alpine
   environment:
     NETLIFY_SITE_ID:
@@ -66,7 +70,7 @@ steps:
     - master
     event:
     - push
-- name: radar.anoff.io
+- name: build & deploy radar.anoff.io
   image: node:lts-slim
   environment:
     FIREBASE_PROJECT:
