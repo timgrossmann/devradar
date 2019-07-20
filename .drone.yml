@@ -9,10 +9,27 @@ steps:
   - cd editor
   - npm ci
   - npm run lint
+- name: build release
+  image: node:lts-slim
+  commands:
+  - cd editor
+  - cp -R .build/static/** .
+  - npm ci
+  - npm run build
+- name: publish
+  image: plugins/github-release
+  settings:
+    api_key:
+      from_secret: GITHUB_TOKEN
+    files: dist/*
+    checksum:
+      - md5
+    prerelease: true
 - name: build
   image: node:lts-slim
   commands:
   - cd editor
+  - git reset --hard
   - cp -R .build/editor/** .
   - npm ci
   - npm run build
