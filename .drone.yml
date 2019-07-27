@@ -9,7 +9,8 @@ steps:
   - cd editor
   - npm ci
   - npm run lint
-- name: build static release
+
+  - name: build static release
   image: node:lts-slim
   commands:
   - cd editor
@@ -18,8 +19,18 @@ steps:
   - npm run build
 - name: git configure static fork
   image: alpine/git
+  environment:
+    DEPLOY_KEY:
+      from_secret: GITHUB_STATIC_KEY
   commands:
-  - git remote add static https://github.com/anoff/devradar-static.git
+  - echo $DEPLOY_KEY > ~/.ssh/id_rsa
+  - mkdir /drone/src/.pages_tmp
+  - git clone -b gh-pages --single-branch git@github.com:anoff/devradar-static.git /drone/src/.pages_tmp
+  - rsync --delete --exclude .git --exclude CNAME -r /drone/src/editor/dist /drone/src/.pages_tmp
+  - cd /drone/src/.pages_tmp
+  - git status --porcelain
+  - git add .
+  - git push origin HEAD:gh-pages 
 - name: publish release
   image: plugins/github-release
   settings:
@@ -41,10 +52,10 @@ steps:
       from_secret: GITHUB_TOKEN
     pages_directory: editor/dist
     upstream_name: static
+
 - name: build editor.devradar.io
   image: node:lts-slim
   commands:
-  - git reset --hard
   - cd editor
   - cp -R .build/editor/** .
   - npm ci
@@ -82,6 +93,7 @@ steps:
     - master
     event:
     - push
+
 - name: build & deploy radar.anoff.io
   image: node:lts-slim
   environment:
@@ -90,7 +102,6 @@ steps:
     FIREBASE_TOKEN:
       from_secret: FIREBASE_TOKEN
   commands:
-  - git reset --hard
   - cd editor
   - npm ci
   - cp -R .build/anoff/** .
