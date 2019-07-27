@@ -16,6 +16,7 @@ steps:
   - cp -R .build/static/** .
   - npm ci
   - npm run build
+  - git remote add static https://github.com/anoff/devradar-static.git
 - name: publish release
   image: plugins/github-release
   settings:
@@ -26,13 +27,21 @@ steps:
       - md5
     prerelease: true
   when:
-    branch:
-    - master
     event:
     - tag
+- name: push to devradar-static
+  image: plugins/gh-pages
+  settings:
+    username:
+      from_secret: GITHUB_USERNAME
+    password:
+      from_secret: GITHUB_TOKEN
+    pages_directory: editor/dist
+    upstream_name: static
 - name: build editor.devradar.io
   image: node:lts-slim
   commands:
+  - git reset --hard
   - cd editor
   - cp -R .build/editor/** .
   - npm ci
@@ -78,6 +87,7 @@ steps:
     FIREBASE_TOKEN:
       from_secret: FIREBASE_TOKEN
   commands:
+  - git reset --hard
   - cd editor
   - npm ci
   - cp -R .build/anoff/** .

@@ -15,7 +15,7 @@ const config = { // needs to be ES6 module so it can be imported by webpack
   // },
   // backend: {
   // type: 'toml',
-  // blipsUrl: '/blips.toml'
+  // blipsUrl: '/devradar.toml'
   // },
   editPermissions: user => true,
   routes: [ // configure name, permissions & view ports
