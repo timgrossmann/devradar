@@ -21,10 +21,11 @@ steps:
   image: alpine/git
   environment:
     username:
-      from_secret: github_username
+      from_secret: GITHUB_USERNAME
     password:
-      from_secret: github_token
+      from_secret: GITHUB_TOKEN
   commands:
+  - apt install rsync -y
   - mkdir /drone/src/.pages_tmp
   - git clone -b gh-pages --single-branch https://$username:$password@github.com/anoff/devradar-static.git /drone/src/.pages_tmp
   - rsync --delete --exclude .git --exclude CNAME -r /drone/src/editor/dist /drone/src/.pages_tmp
