@@ -32,6 +32,8 @@ steps:
   - cd /drone/src/.pages_tmp
   - git status --porcelain
   - git add .
+  - git config user.email ""
+  - git config user.name "CI Joe" 
   - git commit -m "commit static devradar"
   - git push origin HEAD:gh-pages
 - name: publish release
