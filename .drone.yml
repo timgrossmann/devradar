@@ -17,20 +17,23 @@ steps:
   - cp -R .build/static/** .
   - npm ci
   - npm run build
-- name: git configure static fork
+- name: deploy to devradar-static:gh-pages
   image: alpine/git
   environment:
     DEPLOY_KEY:
       from_secret: GITHUB_STATIC_KEY
   commands:
-  - echo $DEPLOY_KEY > ~/.ssh/id_rsa
+  - echo $DEPLOY_KEY > /drone/src/deploy_key
+  - chmod 600 /drone/src/deploy_key
+  - git config core.sshCommand "ssh -i /drone/src/deploy_key"
   - mkdir /drone/src/.pages_tmp
   - git clone -b gh-pages --single-branch git@github.com:anoff/devradar-static.git /drone/src/.pages_tmp
   - rsync --delete --exclude .git --exclude CNAME -r /drone/src/editor/dist /drone/src/.pages_tmp
   - cd /drone/src/.pages_tmp
   - git status --porcelain
   - git add .
-  - git push origin HEAD:gh-pages 
+  - git push origin HEAD:gh-pages
+  - rm /drone/src/deploy_key
 - name: publish release
   image: plugins/github-release
   settings:
@@ -43,15 +46,6 @@ steps:
   when:
     event:
     - tag
-- name: push to devradar-static
-  image: plugins/gh-pages
-  settings:
-    username:
-      from_secret: GITHUB_USERNAME
-    password:
-      from_secret: GITHUB_TOKEN
-    pages_directory: editor/dist
-    upstream_name: static
 
 - name: build editor.devradar.io
   image: node:lts-slim
