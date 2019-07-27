@@ -32,7 +32,7 @@ steps:
   - cd /drone/src/.pages_tmp
   - git status --porcelain
   - git add .
-  - git commit -m "commit static devradar
+  - git commit -m "commit static devradar"
   - git push origin HEAD:gh-pages
 - name: publish release
   image: plugins/github-release
