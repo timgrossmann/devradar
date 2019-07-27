@@ -26,7 +26,7 @@ steps:
       from_secret: GITHUB_TOKEN
   commands:
   - apk add rsync
-  - sed -i.bk -e "s/href=\//href=/g" dist/index.html
+  - sed -i.bk -e 's/href=\//href=/g' dist/index.html
   - mkdir /drone/src/.pages_tmp
   - git clone -b gh-pages --single-branch https://$username:$password@github.com/anoff/devradar-static.git /drone/src/.pages_tmp
   - rsync --delete --exclude .git --exclude CNAME -r /drone/src/editor/dist/ /drone/src/.pages_tmp/
