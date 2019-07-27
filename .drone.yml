@@ -9,13 +9,16 @@ steps:
   - cd editor
   - npm ci
   - npm run lint
-- name: build release
+- name: build static release
   image: node:lts-slim
   commands:
   - cd editor
   - cp -R .build/static/** .
   - npm ci
   - npm run build
+- name: git configure static fork
+  image: alpine/git
+  commands:
   - git remote add static https://github.com/anoff/devradar-static.git
 - name: publish release
   image: plugins/github-release
