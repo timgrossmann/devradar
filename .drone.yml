@@ -10,7 +10,7 @@ steps:
   - npm ci
   - npm run lint
 
-  - name: build static release
+- name: build static release
   image: node:lts-slim
   commands:
   - cd editor
