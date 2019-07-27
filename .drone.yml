@@ -28,7 +28,7 @@ steps:
   - apk add rsync
   - mkdir /drone/src/.pages_tmp
   - git clone -b gh-pages --single-branch https://$username:$password@github.com/anoff/devradar-static.git /drone/src/.pages_tmp
-  - rsync --delete --exclude .git --exclude CNAME -r /drone/src/editor/dist /drone/src/.pages_tmp
+  - rsync --delete --exclude .git --exclude CNAME -r /drone/src/editor/dist/ /drone/src/.pages_tmp/
   - cd /drone/src/.pages_tmp
   - git status --porcelain
   - git add .
