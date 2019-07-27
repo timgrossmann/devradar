@@ -25,7 +25,7 @@ steps:
     password:
       from_secret: GITHUB_TOKEN
   commands:
-  - apt install rsync -y
+  - apk add rsync
   - mkdir /drone/src/.pages_tmp
   - git clone -b gh-pages --single-branch https://$username:$password@github.com/anoff/devradar-static.git /drone/src/.pages_tmp
   - rsync --delete --exclude .git --exclude CNAME -r /drone/src/editor/dist /drone/src/.pages_tmp
