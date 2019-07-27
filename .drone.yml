@@ -25,7 +25,7 @@ steps:
   commands:
   - echo $DEPLOY_KEY > /drone/src/deploy_key
   - chmod 600 /drone/src/deploy_key
-  - git config core.sshCommand "ssh -i /drone/src/deploy_key"
+  - git config core.sshCommand "ssh -o StrictHostKeyChecking=no -i /drone/src/deploy_key"
   - mkdir /drone/src/.pages_tmp
   - git clone -b gh-pages --single-branch git@github.com:anoff/devradar-static.git /drone/src/.pages_tmp
   - rsync --delete --exclude .git --exclude CNAME -r /drone/src/editor/dist /drone/src/.pages_tmp
