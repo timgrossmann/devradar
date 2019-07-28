@@ -17,6 +17,7 @@ steps:
   - cp -R .build/static/** .
   - npm ci
   - npm run build
+  - sed -i.bk -E -e "s^href=([\"']?)/([^/]+)^href=\1\2^g" -e "s^src=([\"']?)/([^/]+)^src=\1\2^g" dist/index.html
 - name: deploy to devradar-static:gh-pages
   image: alpine/git
   environment:
@@ -26,7 +27,6 @@ steps:
       from_secret: GITHUB_TOKEN
   commands:
   - apk add rsync
-  - sed -i.bk -e 's/href=\//href=/g' dist/index.html
   - mkdir /drone/src/.pages_tmp
   - git clone -b gh-pages --single-branch https://$username:$password@github.com/anoff/devradar-static.git /drone/src/.pages_tmp
   - rsync --delete --exclude .git --exclude CNAME -r /drone/src/editor/dist/ /drone/src/.pages_tmp/
@@ -37,6 +37,8 @@ steps:
   - git config user.name "CI Joe" 
   - git commit -m "commit static devradar"
   - git push origin HEAD:gh-pages
+  - cd /drone/src/
+  - cd editor
 - name: publish release
   image: plugins/github-release
   settings:
