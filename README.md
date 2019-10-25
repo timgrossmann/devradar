@@ -1,39 +1,61 @@
-# devradar
+<p align="center">
+  <img src="assets/logo-text.png">
+  <p align="center">Tooling that <b>automates</b> your social media interactions to “farm” Likes, Comments, and Followers on Instagram
+Implemented in Python using the Selenium module.<p>
+  <p align="center">
+    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fanoff%2Fdevradar?ref=badge_shield">
+      <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fanoff%2Fdevradar.svg?type=shield" />
+    </a>
+    <a href="https://dependabot.com/">
+      <img src="https://badgen.net/dependabot/dependabot/dependabot-core/?icon=dependabot" />
+    </a>
+    <a href="./LICENSE">
+    	<img src="https://badgen.net/badge/license/MIT/blue" />
+    </a>
+    <a href="https://gitter.im/devradar/discuss">
+	    <img src="https://badgen.net/badge/chat/on%20gitter/cyan?icon=gitter">
+    </a>
+    <a href="https://vuejs.org/">
+	    <img src="https://badgen.net/badge/built%20with/Vue.js/cyan">
+    </a>
+    <a href="https://www.typescriptlang.org/">
+	    <img src="https://badgen.net/badge/code/TypeScript/blue">
+    </a>  
+    <a href="https://standardjs.com/">
+	    <img src="https://badgen.net/badge/code%20style/standard/pink">
+    </a>
+    <a href="https://github.com/anoff/devradar/actions">
+	    <img src="https://github.com/anoff/devradar/workflows/editor/badge.svg">
+    </a>
+    <a href="https://github.com/anoff/devradar/actions">
+	    <img src="https://github.com/anoff/devradar/workflows/teams/badge.svg">
+    </a>  
+    <a href="https://github.com/anoff/devradar/actions">
+	    <img src="https://github.com/anoff/devradar/workflows/web/badge.svg">
+    </a>
+  </p>
+</p>
 
-[![License check](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fanoff%2Fdevradar.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fanoff%2Fdevradar?ref=badge_shield)
-[![Dependabot status](https://badgen.net/dependabot/dependabot/dependabot-core/?icon=dependabot)](https://dependabot.com/)
-[![License](https://badgen.net/badge/license/MIT/blue)](LICENSE)
-[![Gitter](https://badgen.net/badge/chat/on%20gitter/cyan?icon=gitter)](https://gitter.im/devradar/discuss)
-
-[![VueJS](https://badgen.net/badge/built%20with/Vue.js/cyan)](https://vuejs.org/)
-[![TypeScript](https://badgen.net/badge/code/TypeScript/blue)](https://www.typescriptlang.org/)
-[![Standard](https://badgen.net/badge/code%20style/standard/pink)](https://standardjs.com/)
-
-[![Build Status](https://github.com/anoff/devradar/workflows/editor/badge.svg)](https://github.com/anoff/devradar/actions)
-[![Build Status](https://github.com/anoff/devradar/workflows/teams/badge.svg)](https://github.com/anoff/devradar/actions)
-[![Build Status](https://github.com/anoff/devradar/workflows/web/badge.svg)](https://github.com/anoff/devradar/actions)
-
-[<img src="assets/logo-text.png">](https://devradar.io)
 
 > Visit [devradar.io](https://devradar.io) for an introduction
 
 This repository holds the individual projects making up the devradar ecosystem:
 
-* [editor](editor/): track and visualize tech skills (Vue)
-* [teams](teams/): manage skills across an entire team (Vue)
-* [web](web/): devradar landing page at [devradar.io](//devradar.io) (Hugo)
+* [Editor](editor/): track and visualize tech skills (Vue)
+* [Teams](teams/): manage skills across an entire team (Vue)
+* [Web](web/): devradar landing page at [devradar.io](//devradar.io) (Hugo)
 
 See [anoff/devradar-static](https://github.com/anoff/devradar-static) for an easy to setup version of the devradar to present your own tech skills.
 
 ## Demo
 
-### devradar editor
+### Devradar editor
 
 Create and update your skill information
 
 <img src="assets/editor-demo.gif" alt="video of the editor app">
 
-### devradar teams
+### Devradar teams
 
 Compare your teams target skills with existing team devradars
 
