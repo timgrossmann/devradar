@@ -2,12 +2,6 @@
   <img src="assets/logo-text.png">
   <p align="center"><b>Track and manage</b> your and your teams skill set to <b>accelerate progress and advance productivity</b>.<p>
   <p align="center">
-    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fanoff%2Fdevradar?ref=badge_shield">
-      <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fanoff%2Fdevradar.svg?type=shield" />
-    </a>
-    <a href="https://dependabot.com/">
-      <img src="https://badgen.net/dependabot/dependabot/dependabot-core/?icon=dependabot" />
-    </a>
     <a href="./LICENSE">
     	<img src="https://badgen.net/badge/license/MIT/blue" />
     </a>
@@ -22,6 +16,13 @@
     </a>  
     <a href="https://standardjs.com/">
 	    <img src="https://badgen.net/badge/code%20style/standard/pink">
+    </a>
+    <br />
+    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fanoff%2Fdevradar?ref=badge_shield">
+      <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fanoff%2Fdevradar.svg?type=shield" />
+    </a>
+    <a href="https://dependabot.com/">
+      <img src="https://badgen.net/dependabot/dependabot/dependabot-core/?icon=dependabot" />
     </a>
     <a href="https://github.com/anoff/devradar/actions">
 	    <img src="https://github.com/anoff/devradar/workflows/editor/badge.svg">
