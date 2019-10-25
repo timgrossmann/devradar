@@ -1,7 +1,6 @@
 <p align="center">
   <img src="assets/logo-text.png">
-  <p align="center">Tooling that <b>automates</b> your social media interactions to “farm” Likes, Comments, and Followers on Instagram
-Implemented in Python using the Selenium module.<p>
+  <p align="center"><b>Track and manage</b> your and your teams skill set to <b>accelerate progress and advance productivity</b>.<p>
   <p align="center">
     <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fanoff%2Fdevradar?ref=badge_shield">
       <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fanoff%2Fdevradar.svg?type=shield" />
@@ -37,7 +36,9 @@ Implemented in Python using the Selenium module.<p>
 </p>
 
 
-> Visit [devradar.io](https://devradar.io) for an introduction
+<br />
+
+**Get more information: [Try out devradar.io here](https://devradar.io)**
 
 This repository holds the individual projects making up the devradar ecosystem:
 
@@ -46,6 +47,8 @@ This repository holds the individual projects making up the devradar ecosystem:
 * [Web](web/): devradar landing page at [devradar.io](//devradar.io) (Hugo)
 
 See [anoff/devradar-static](https://github.com/anoff/devradar-static) for an easy to setup version of the devradar to present your own tech skills.
+
+<br />
 
 ## Demo
 
@@ -60,6 +63,8 @@ Create and update your skill information
 Compare your teams target skills with existing team devradars
 
 <img src="assets/teams-demo.gif" alt="video of the teams app">
+
+<br />
 
 ## License & Attributions
 
